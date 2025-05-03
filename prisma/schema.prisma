@@ -1,0 +1,122 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String    @unique
+  password      String
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  emailVerified DateTime?
+  
+  // Module-specific data
+  healthProfile     HealthProfile?
+  fitnessProfile    FitnessProfile?
+  nutritionProfile  NutritionProfile?
+  financeProfile    FinanceProfile?
+  learningProfile   LearningProfile?
+  travelProfile     TravelProfile?
+  entertainmentProfile EntertainmentProfile?
+}
+
+// Health & Wellness Module
+model HealthProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  mentalHealth    Json?
+  physicalHealth  Json?
+  sleepPatterns   Json?
+  stressLevels    Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Fitness & Exercise Module
+model FitnessProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  fitnessGoals    Json?
+  workoutHistory  Json?
+  preferences     Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Nutrition & Diet Module
+model NutritionProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  dietaryGoals    Json?
+  foodPreferences Json?
+  mealHistory     Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Personal Finance Module
+model FinanceProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  financialGoals  Json?
+  spendingHabits  Json?
+  investmentPrefs Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Learning & Education Module
+model LearningProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  learningGoals   Json?
+  interests       Json?
+  progress        Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Travel & Exploration Module
+model TravelProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  travelHistory   Json?
+  preferences     Json?
+  wishlist        Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Entertainment Module
+model EntertainmentProfile {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String    @unique @db.ObjectId
+  user            User      @relation(fields: [userId], references: [id])
+  preferences     Json?
+  history         Json?
+  recommendations Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+} 
