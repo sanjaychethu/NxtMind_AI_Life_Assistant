@@ -1,6 +1,15 @@
 'use client'
 
-import Chatbot from '@/components/Chatbot'
+import dynamic from 'next/dynamic'
+
+const Chatbot = dynamic(() => import('@/components/Chatbot'), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-[400px] flex items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  ),
+})
 
 export default function ChatPage() {
   return (

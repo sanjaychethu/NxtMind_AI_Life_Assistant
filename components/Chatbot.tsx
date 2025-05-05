@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X } from 'lucide-react';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
 import maxIdle from '@/public/animations/max-idle.json';
 import maxWave from '@/public/animations/max-wave.json';
 import maxThinking from '@/public/animations/max-thinking.json';
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 interface Message {
   role: 'user' | 'assistant';

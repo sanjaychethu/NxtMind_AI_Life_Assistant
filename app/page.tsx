@@ -6,7 +6,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import "./globals.css";
 import * as LucideIcons from 'lucide-react';
-import Chatbot from '@/components/Chatbot';
+import dynamic from 'next/dynamic';
+
+const Chatbot = dynamic(() => import('@/components/Chatbot'), {
+  ssr: false,
+  loading: () => null
+});
 
 const {
   HeartPulse,
