@@ -20,8 +20,28 @@ export default function RegisterPage() {
     const password = formData.get('password') as string
     const confirmPassword = formData.get('confirmPassword') as string
 
+    // Client-side validation
+    if (!name || !email || !password || !confirmPassword) {
+      setError('All fields are required')
+      setLoading(false)
+      return
+    }
+
     if (password !== confirmPassword) {
       setError('Passwords do not match')
+      setLoading(false)
+      return
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long')
+      setLoading(false)
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address')
       setLoading(false)
       return
     }
@@ -39,14 +59,16 @@ export default function RegisterPage() {
         }),
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.message || 'Something went wrong')
+        throw new Error(data.message || 'Registration failed')
       }
 
-      router.push('/login')
+      // Registration successful
+      router.push('/login?registered=true')
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An error occurred')
+      setError(error instanceof Error ? error.message : 'Registration failed. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -95,6 +117,7 @@ export default function RegisterPage() {
                 type="email"
                 autoComplete="email"
                 required
+                pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
                 className="mt-1 block w-full px-4 py-3 rounded-lg bg-background border border-foreground/20 focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                 placeholder="Enter your email"
               />
@@ -110,8 +133,9 @@ export default function RegisterPage() {
                 type="password"
                 autoComplete="new-password"
                 required
+                minLength={6}
                 className="mt-1 block w-full px-4 py-3 rounded-lg bg-background border border-foreground/20 focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                placeholder="Create a password"
+                placeholder="Create a password (min. 6 characters)"
               />
             </div>
 
@@ -125,6 +149,7 @@ export default function RegisterPage() {
                 type="password"
                 autoComplete="new-password"
                 required
+                minLength={6}
                 className="mt-1 block w-full px-4 py-3 rounded-lg bg-background border border-foreground/20 focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                 placeholder="Confirm your password"
               />

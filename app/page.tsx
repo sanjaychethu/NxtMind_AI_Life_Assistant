@@ -5,20 +5,23 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import "./globals.css";
-import { 
-  HeartPulse, 
-  Dumbbell, 
-  Brain, 
-  Apple, 
-  Wallet, 
-  GraduationCap, 
-  Plane, 
-  Clapperboard, 
-  Users, 
-  Moon, 
-  Star, 
-  Briefcase 
-} from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
+import Chatbot from '@/components/Chatbot';
+
+const {
+  HeartPulse,
+  Dumbbell,
+  Brain,
+  Apple,
+  Wallet,
+  GraduationCap,
+  Plane,
+  Clapperboard,
+  Users,
+  Moon,
+  Star,
+  Briefcase
+} = LucideIcons;
 
 const modules = [
   {
@@ -107,9 +110,13 @@ const modules = [
   }
 ];
 
+const mongodbUri = process.env.MONGODB_URI;
+const jwtSecret = process.env.JWT_SECRET;
+const dbName = process.env.MONGODB_DB;
+
 export default function Home() {
   return (
-    <main className="flex-1">
+    <>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] sm:min-h-screen w-full flex items-center overflow-hidden px-4 sm:px-6 lg:px-8">
         {/* Background Effects */}
@@ -183,7 +190,7 @@ export default function Home() {
               <div className="relative z-10 h-full w-full rounded-2xl overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent" />
                 <Image
-                  src="/images/ai-features.jpg"
+                  src="/images/ai.jpg"
                   alt="NexMind AI Assistant"
                   fill
                   className="object-cover"
@@ -298,6 +305,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Chatbot Component */}
+      <Chatbot />
+    </>
   );
 }

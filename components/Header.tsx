@@ -15,17 +15,26 @@ export default function Header() {
           </Link>
           
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/wellness" className="nav-link">
-              AI Wellness
+            <Link href="/health" className="nav-link">
+              Health
             </Link>
-            <Link href="/lifestyle" className="nav-link">
-              AI Lifestyle
+            <Link href="/fitness" className="nav-link">
+              Fitness
+            </Link>
+            <Link href="/nutrition" className="nav-link">
+              Nutrition
             </Link>
             <Link href="/finance" className="nav-link">
-              Smart Finance
+              Finance
             </Link>
-            <Link href="/discover" className="nav-link">
-              Discover
+            <Link href="/learning" className="nav-link">
+              Learning
+            </Link>
+            <Link href="/travel" className="nav-link">
+              Travel
+            </Link>
+            <Link href="/entertainment" className="nav-link">
+              Entertainment
             </Link>
             <Link 
               href="/login" 
@@ -36,7 +45,7 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2 rounded-lg hover:bg-foreground/10 transition-colors">
+          <button className="md:hidden p-2 hover:bg-foreground/10 rounded-lg transition-colors">
             <span className="sr-only">Open menu</span>
             <svg 
               className="h-6 w-6 transition-transform duration-300 hover:scale-110" 

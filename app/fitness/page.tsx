@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { HeartPulse, Brain, Moon, Dumbbell, Star } from 'lucide-react'
+import { Dumbbell, Heart, Flame, Target, Star, Trophy } from 'lucide-react'
 
 // Use a simple chevron and loader SVG inline since Lucide does not export those
 const ChevronRight = (props: any) => (
@@ -11,7 +11,6 @@ const Loader = (props: any) => (
   <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={props.className}><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
 )
 
-// Add these interfaces at the top of the file
 interface Question {
   id: string;
   question: string;
@@ -32,64 +31,84 @@ interface Section {
   content: string[];
 }
 
-const healthCategories: Category[] = [
+const fitnessCategories: Category[] = [
   {
-    id: 'mental',
-    title: 'Mental Health',
-    description: 'Get personalized mental wellness recommendations',
-    icon: <Brain className="w-6 h-6" />,
-    color: 'from-blue-500 to-purple-500',
-    questions: [
-      { id: 'stress_level', question: 'How would you rate your current stress level?', options: ['Low', 'Moderate', 'High', 'Very High'] },
-      { id: 'sleep_quality', question: 'How would you rate your sleep quality?', options: ['Poor', 'Fair', 'Good', 'Excellent'] },
-      { id: 'mood', question: 'How would you describe your current mood?', options: ['Depressed', 'Neutral', 'Good', 'Excellent'] },
-      { id: 'focus', question: 'How well can you concentrate on tasks?', options: ['Very Poor', 'Poor', 'Good', 'Excellent'] },
-      { id: 'social_interaction', question: 'How satisfied are you with your social interactions?', options: ['Not at all', 'Somewhat', 'Mostly', 'Very satisfied'] }
-    ]
-  },
-  {
-    id: 'physical',
-    title: 'Physical Health',
-    description: 'Track and improve your physical well-being',
+    id: 'strength',
+    title: 'Strength Training',
+    description: 'Assess your strength levels and get personalized weight training plans',
     icon: <Dumbbell className="w-6 h-6" />,
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-purple-500 to-indigo-500',
     questions: [
-      { id: 'exercise_frequency', question: 'How often do you exercise?', options: ['Never', '1-2 times/week', '3-4 times/week', '5+ times/week'] },
-      { id: 'energy_level', question: 'How would you rate your energy levels?', options: ['Low', 'Moderate', 'Good', 'High'] },
-      { id: 'physical_activity', question: 'How active are you during the day?', options: ['Mostly Sedentary', 'Lightly Active', 'Moderately Active', 'Very Active'] },
-      { id: 'diet_quality', question: 'How would you rate your diet quality?', options: ['Poor', 'Fair', 'Good', 'Excellent'] },
-      { id: 'hydration', question: 'How much water do you drink daily?', options: ['<1L', '1-2L', '2-3L', '3L+'] }
+      { id: 'experience_level', question: 'What is your experience with strength training?', 
+        options: ['Beginner', 'Intermediate', 'Advanced', 'Expert'] },
+      { id: 'training_frequency', question: 'How often do you strength train?', 
+        options: ['Never', '1-2 times/week', '3-4 times/week', '5+ times/week'] },
+      { id: 'strength_goals', question: 'What are your primary strength goals?', 
+        options: ['Build Muscle', 'Increase Strength', 'Improve Tone', 'General Fitness'] },
+      { id: 'equipment_access', question: 'What equipment do you have access to?', 
+        options: ['None/Bodyweight', 'Basic Home Gym', 'Full Home Gym', 'Commercial Gym'] },
+      { id: 'recovery_time', question: 'How well do you recover between workouts?', 
+        options: ['Poor Recovery', 'Moderate Recovery', 'Good Recovery', 'Excellent Recovery'] }
     ]
   },
   {
-    id: 'sleep',
-    title: 'Sleep Quality',
-    description: 'Optimize your sleep patterns and habits',
-    icon: <Moon className="w-6 h-6" />,
-    color: 'from-indigo-500 to-violet-500',
+    id: 'cardio',
+    title: 'Cardiovascular Fitness',
+    description: 'Evaluate your cardio fitness and receive tailored cardio workout plans',
+    icon: <Heart className="w-6 h-6" />,
+    color: 'from-red-500 to-pink-500',
     questions: [
-      { id: 'sleep_duration', question: 'How many hours do you sleep on average?', options: ['Less than 5 hours', '5-6 hours', '7-8 hours', 'More than 8 hours'] },
-      { id: 'sleep_quality', question: 'How would you rate your sleep quality?', options: ['Poor', 'Fair', 'Good', 'Excellent'] },
-      { id: 'sleep_issues', question: 'Do you experience any sleep issues?', options: ['Frequent Insomnia', 'Occasional Issues', 'Rare Issues', 'No Issues'] },
-      { id: 'bedtime_consistency', question: 'How consistent is your bedtime?', options: ['Very inconsistent', 'Somewhat inconsistent', 'Mostly consistent', 'Very consistent'] },
-      { id: 'wake_feeling', question: 'How do you feel upon waking up?', options: ['Very tired', 'Somewhat tired', 'Refreshed', 'Energized'] }
+      { id: 'cardio_frequency', question: 'How often do you do cardio exercises?', 
+        options: ['Rarely', '1-2 times/week', '3-4 times/week', '5+ times/week'] },
+      { id: 'cardio_duration', question: 'How long can you maintain moderate cardio activity?', 
+        options: ['< 10 minutes', '10-20 minutes', '20-40 minutes', '40+ minutes'] },
+      { id: 'preferred_cardio', question: 'What type of cardio do you prefer?', 
+        options: ['Walking/Running', 'Cycling', 'Swimming', 'HIIT Training'] },
+      { id: 'intensity_level', question: 'What intensity level are you comfortable with?', 
+        options: ['Light', 'Moderate', 'High', 'Very High'] },
+      { id: 'cardio_goals', question: 'What are your cardio fitness goals?', 
+        options: ['Weight Loss', 'Endurance', 'Heart Health', 'Athletic Performance'] }
     ]
   },
   {
-    id: 'stress',
-    title: 'Stress Management',
-    description: 'Learn effective stress reduction techniques',
-    icon: <HeartPulse className="w-6 h-6" />,
-    color: 'from-rose-500 to-pink-500',
+    id: 'flexibility',
+    title: 'Flexibility & Mobility',
+    description: 'Analyze your flexibility and get customized mobility improvement plans',
+    icon: <Flame className="w-6 h-6" />,
+    color: 'from-orange-500 to-yellow-500',
     questions: [
-      { id: 'stress_sources', question: 'What are your main sources of stress?', options: ['Work', 'Relationships', 'Health', 'Financial'] },
-      { id: 'stress_management', question: 'How do you currently manage stress?', options: ['No Management', 'Basic Techniques', 'Regular Practice', 'Comprehensive Approach'] },
-      { id: 'stress_impact', question: 'How does stress affect your daily life?', options: ['Severely', 'Moderately', 'Slightly', 'Minimally'] },
-      { id: 'relaxation_frequency', question: 'How often do you practice relaxation techniques?', options: ['Never', 'Occasionally', 'Regularly', 'Daily'] },
-      { id: 'support_system', question: 'How strong is your support system?', options: ['None', 'Weak', 'Moderate', 'Strong'] }
+      { id: 'stretch_routine', question: 'Do you have a regular stretching routine?', 
+        options: ['Never', 'Occasionally', 'Regular', 'Daily'] },
+      { id: 'mobility_level', question: 'How would you rate your overall flexibility?', 
+        options: ['Poor', 'Fair', 'Good', 'Excellent'] },
+      { id: 'movement_restrictions', question: 'Do you have any movement restrictions?', 
+        options: ['Several', 'A Few', 'Minor', 'None'] },
+      { id: 'mobility_practice', question: 'What type of mobility work do you practice?', 
+        options: ['None', 'Basic Stretching', 'Yoga/Pilates', 'Advanced Mobility Training'] },
+      { id: 'flexibility_goals', question: 'What are your flexibility goals?', 
+        options: ['Injury Prevention', 'Better Posture', 'Increased Range of Motion', 'Athletic Performance'] }
+    ]
+  },
+  {
+    id: 'goals',
+    title: 'Fitness Goals',
+    description: 'Set and track your fitness objectives for personalized guidance',
+    icon: <Target className="w-6 h-6" />,
+    color: 'from-emerald-500 to-teal-500',
+    questions: [
+      { id: 'primary_goal', question: 'What is your primary fitness goal?', 
+        options: ['Weight Loss', 'Muscle Gain', 'Athletic Performance', 'Overall Health'] },
+      { id: 'time_commitment', question: 'How much time can you commit to fitness weekly?', 
+        options: ['2-3 hours', '4-6 hours', '7-9 hours', '10+ hours'] },
+      { id: 'lifestyle_activity', question: 'How active is your daily lifestyle?', 
+        options: ['Sedentary', 'Lightly Active', 'Moderately Active', 'Very Active'] },
+      { id: 'motivation_level', question: 'How would you rate your fitness motivation?', 
+        options: ['Low', 'Moderate', 'High', 'Very High'] },
+      { id: 'progress_tracking', question: 'How do you prefer to track your progress?', 
+        options: ['Measurements', 'Progress Photos', 'Performance Metrics', 'All of the Above'] }
     ]
   }
-]
+];
 
 function calculateScore(category: Category, answers: Record<string, string>) {
   let score = 0;
@@ -97,7 +116,9 @@ function calculateScore(category: Category, answers: Record<string, string>) {
   category.questions.forEach((q: Question) => {
     const answer = answers[q.id];
     let value = q.options.indexOf(answer);
-    if (q.id.includes('stress') || q.id === 'mood' || q.id === 'sleep_issues') {
+    // For some questions, we don't want to reverse the score
+    const nonReverseIds = ['primary_goal', 'preferred_cardio', 'progress_tracking'];
+    if (!nonReverseIds.includes(q.id)) {
       value = q.options.length - 1 - value;
     }
     score += value;
@@ -106,35 +127,30 @@ function calculateScore(category: Category, answers: Record<string, string>) {
 }
 
 function parseGeminiResponse(text: string): Section[] {
-  // Clean up the text first
   const cleanText = text
-    .replace(/\*+/g, '') // Remove all stars
-    .replace(/#+/g, '') // Remove any hashtags
+    .replace(/\*+/g, '')
+    .replace(/#+/g, '')
     .split('\n')
     .map(line => line.trim())
     .filter(Boolean)
     .join('\n');
 
-  // Try to split into sections
   const sections: Section[] = [];
   let current: Section | null = null;
 
   cleanText.split('\n').forEach(line => {
-    // Check for numbered sections or keywords
-    if (/^\d+\.\s*(.*?):/i.test(line) || /^(Overview|Current State|Recommendations|Benefits|Tracking Tip):/i.test(line)) {
+    if (/^\d+\.\s*(.*?):/i.test(line) || /^(Overview|Workout Plan|Exercise Details|Progression|Tips):/i.test(line)) {
       if (current && (current as Section).content.length > 0) sections.push(current as Section);
       const title = line.replace(/^\d+\.\s*/, '').replace(/:$/, '');
       current = { title, content: [] };
     } else if (current) {
-      // Clean up the content line
       const cleanLine = line
-        .replace(/^\s*[-•]\s*/, '') // Remove bullet points
-        .replace(/^\s*\*\s*/, ''); // Remove starting asterisks
+        .replace(/^\s*[-•]\s*/, '')
+        .replace(/^\s*\*\s*/, '');
       if (cleanLine) {
         current.content.push(cleanLine);
       }
     } else {
-      // First block (overview)
       current = { title: 'Overview', content: [line] };
     }
   });
@@ -143,7 +159,7 @@ function parseGeminiResponse(text: string): Section[] {
   return sections;
 }
 
-export default function HealthPage() {
+export default function FitnessPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
@@ -160,19 +176,18 @@ export default function HealthPage() {
   }
 
   const handleAnswer = async (answer: string) => {
-    const category = healthCategories.find(c => c.id === selectedCategory)
+    const category = fitnessCategories.find(c => c.id === selectedCategory)
     if (!category) return
     const currentQ = category.questions[currentQuestion]
     setAnswers(prev => ({ ...prev, [currentQ.id]: answer }))
     if (currentQuestion < category.questions.length - 1) {
       setCurrentQuestion(prev => prev + 1)
     } else {
-      // All questions answered, get recommendations and score
       setIsLoading(true)
       const score = calculateScore(category, { ...answers, [currentQ.id]: answer })
       setScoreData(score)
       try {
-        const response = await fetch('/api/health/recommendations', {
+        const response = await fetch('/api/fitness/recommendations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -190,24 +205,23 @@ export default function HealthPage() {
     }
   }
 
-  const selectedCategoryData = healthCategories.find(c => c.id === selectedCategory)
-
-  // Progress bar percentage
+  const selectedCategoryData = fitnessCategories.find(c => c.id === selectedCategory)
   const progress = selectedCategoryData ? ((currentQuestion) / selectedCategoryData.questions.length) * 100 : 0
 
   return (
     <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold gradient-text mb-4">Health & Wellness</h1>
+          <h1 className="text-4xl font-bold gradient-text mb-4">Fitness Assessment</h1>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Get personalized health and wellness recommendations based on your current state and goals.
+            Get personalized workout plans and fitness recommendations based on your goals and current fitness level.
           </p>
         </div>
-        {/* Health Categories Grid */}
+
+        {/* Fitness Categories Grid */}
         {!selectedCategory && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {healthCategories.map((category) => (
+            {fitnessCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => handleCategorySelect(category.id)}
@@ -229,6 +243,7 @@ export default function HealthPage() {
             ))}
           </div>
         )}
+
         {/* Questionnaire */}
         {selectedCategory && !recommendations && (
           <div className="max-w-2xl mx-auto bg-background/60 rounded-2xl p-8 border border-foreground/10">
@@ -237,7 +252,10 @@ export default function HealthPage() {
             </h2>
             {/* Progress Bar */}
             <div className="w-full h-2 bg-foreground/10 rounded-full mb-6 overflow-hidden">
-              <div className="h-full bg-primary rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+              <div 
+                className="h-full bg-primary rounded-full transition-all duration-300" 
+                style={{ width: `${progress}%` }} 
+              />
             </div>
             {selectedCategoryData && (
               <div className="space-y-6">
@@ -262,39 +280,43 @@ export default function HealthPage() {
             )}
           </div>
         )}
+
         {/* Recommendations Section */}
         {recommendations && (
           <div className="max-w-2xl mx-auto bg-background/60 rounded-2xl p-8 border border-foreground/10 mt-8">
             <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-              <Star className="w-6 h-6 text-accent" /> Your Results
+              <Trophy className="w-6 h-6 text-accent" /> Your Fitness Plan
             </h2>
+
             {/* Score Card */}
             {scoreData && (
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-xl">
                   <Star className="w-5 h-5 text-primary" />
                   <span className="font-bold text-lg text-primary">{scoreData.score} / {scoreData.max}</span>
-                  <span className="text-foreground/60 ml-2">Wellness Score</span>
+                  <span className="text-foreground/60 ml-2">Fitness Level</span>
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm text-foreground/60">Higher is better</div>
+                  <div className="text-sm text-foreground/60">Based on your assessment</div>
                 </div>
               </div>
             )}
+
             {/* Summary of Answers */}
             <div className="mb-6">
-              <div className="font-semibold text-foreground mb-2">Your Answers:</div>
+              <div className="font-semibold text-foreground mb-2">Your Profile:</div>
               <ul className="list-disc pl-6 text-foreground/80">
-                {selectedCategoryData?.questions.map((q: { id: string; question: string }, idx: number) => (
+                {selectedCategoryData?.questions.map(q => (
                   <li key={q.id}><span className="font-medium">{q.question}</span>: {answers[q.id]}</li>
                 ))}
               </ul>
             </div>
-            {/* Gemini Recommendations */}
+
+            {/* Workout Recommendations */}
             <div className="mb-8">
               <div className="font-semibold text-xl text-foreground mb-4 flex items-center gap-2">
-                <Brain className="w-6 h-6 text-primary" />
-                AI Recommendations
+                <Dumbbell className="w-6 h-6 text-primary" />
+                Personalized Workout Plan
               </div>
               {isLoading ? (
                 <div className="flex items-center justify-center py-8">
@@ -319,15 +341,23 @@ export default function HealthPage() {
                 </div>
               )}
             </div>
+
             {/* Insights */}
             <div className="mb-6">
               <div className="font-semibold text-foreground mb-2">Key Insights:</div>
               <ul className="list-disc pl-6 text-foreground/80">
-                {scoreData && scoreData.score / scoreData.max > 0.7 && <li>Great job! Your wellness score is above average.</li>}
-                {scoreData && scoreData.score / scoreData.max <= 0.7 && scoreData.score / scoreData.max > 0.4 && <li>Your wellness is moderate. Consider focusing on areas with lower scores.</li>}
-                {scoreData && scoreData.score / scoreData.max <= 0.4 && <li>Your wellness score is low. Prioritize self-care and follow the recommendations closely.</li>}
+                {scoreData && scoreData.score / scoreData.max > 0.7 && (
+                  <li>You're at an advanced fitness level. Focus on progressive overload and specialized training.</li>
+                )}
+                {scoreData && scoreData.score / scoreData.max <= 0.7 && scoreData.score / scoreData.max > 0.4 && (
+                  <li>You have a good foundation. Consider increasing intensity and adding variety to your workouts.</li>
+                )}
+                {scoreData && scoreData.score / scoreData.max <= 0.4 && (
+                  <li>Start with the basics and focus on proper form. Gradually increase intensity as you build strength.</li>
+                )}
               </ul>
             </div>
+
             <button
               onClick={() => {
                 setSelectedCategory(null)
