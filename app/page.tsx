@@ -110,10 +110,6 @@ const modules = [
   }
 ];
 
-const mongodbUri = process.env.MONGODB_URI;
-const jwtSecret = process.env.JWT_SECRET;
-const dbName = process.env.MONGODB_DB;
-
 export default function Home() {
   return (
     <>
