@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 
 export default function Header() {
@@ -18,8 +20,8 @@ export default function Header() {
             <Link href="/health" className="nav-link">
               Health
             </Link>
-            <Link href="/fitness" className="nav-link">
-              Fitness
+            <Link href="/movies" className="nav-link">
+              Movies
             </Link>
             <Link href="/nutrition" className="nav-link">
               Nutrition

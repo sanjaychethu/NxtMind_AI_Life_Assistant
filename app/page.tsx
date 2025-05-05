@@ -26,30 +26,16 @@ const {
 const modules = [
   {
     id: '1',
-    title: 'Health AI',
-    description: 'Personalized health tracking and medical insights',
-    icon: <HeartPulse className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
+    title: 'Health Assessment',
+    description: 'Get personalized health insights and recommendations',
+    icon: '🏥',
     path: '/health'
-  },
-  {
-    id: '2',
-    title: 'Fitness Coach',
-    description: 'AI-powered workout plans and fitness guidance',
-    icon: <Dumbbell className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
-    path: '/fitness'
-  },
-  {
-    id: '3',
-    title: 'Mind Wellness',
-    description: 'Mental health and meditation recommendations',
-    icon: <Brain className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
-    path: '/mind'
   },
   {
     id: '4',
     title: 'Nutrition Guide',
-    description: 'Smart meal planning and dietary suggestions',
-    icon: <Apple className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
+    description: 'Personalized meal plans and nutrition advice',
+    icon: '🥗',
     path: '/nutrition'
   },
   {
