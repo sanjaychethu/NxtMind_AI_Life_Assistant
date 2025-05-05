@@ -1,15 +1,16 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Dumbbell, Heart, Flame, Target, Star, Trophy } from 'lucide-react'
-
-// Use a simple chevron and loader SVG inline since Lucide does not export those
-const ChevronRight = (props: any) => (
-  <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-)
-const Loader = (props: any) => (
-  <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={props.className}><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
-)
+import { 
+  Activity,
+  Heart,
+  Zap,
+  CircleDot,
+  Star,
+  Award,
+  ArrowRight,
+  Loader2
+} from 'lucide-react'
 
 interface Question {
   id: string;
@@ -36,7 +37,7 @@ const fitnessCategories: Category[] = [
     id: 'strength',
     title: 'Strength Training',
     description: 'Assess your strength levels and get personalized weight training plans',
-    icon: <Dumbbell className="w-6 h-6" />,
+    icon: <Activity className="w-6 h-6" />,
     color: 'from-purple-500 to-indigo-500',
     questions: [
       { id: 'experience_level', question: 'What is your experience with strength training?', 
@@ -74,7 +75,7 @@ const fitnessCategories: Category[] = [
     id: 'flexibility',
     title: 'Flexibility & Mobility',
     description: 'Analyze your flexibility and get customized mobility improvement plans',
-    icon: <Flame className="w-6 h-6" />,
+    icon: <Zap className="w-6 h-6" />,
     color: 'from-orange-500 to-yellow-500',
     questions: [
       { id: 'stretch_routine', question: 'Do you have a regular stretching routine?', 
@@ -93,7 +94,7 @@ const fitnessCategories: Category[] = [
     id: 'goals',
     title: 'Fitness Goals',
     description: 'Set and track your fitness objectives for personalized guidance',
-    icon: <Target className="w-6 h-6" />,
+    icon: <CircleDot className="w-6 h-6" />,
     color: 'from-emerald-500 to-teal-500',
     questions: [
       { id: 'primary_goal', question: 'What is your primary fitness goal?', 
@@ -109,6 +110,10 @@ const fitnessCategories: Category[] = [
     ]
   }
 ];
+
+// Replace custom components with Lucide icons
+const ChevronRight = (props: any) => <ArrowRight {...props} />
+const LoaderComponent = (props: any) => <Loader2 {...props} className={`${props.className} animate-spin`} />
 
 function calculateScore(category: Category, answers: Record<string, string>) {
   let score = 0;
@@ -285,7 +290,7 @@ export default function FitnessPage() {
         {recommendations && (
           <div className="max-w-2xl mx-auto bg-background/60 rounded-2xl p-8 border border-foreground/10 mt-8">
             <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-accent" /> Your Fitness Plan
+              <Award className="w-6 h-6 text-accent" /> Your Fitness Plan
             </h2>
 
             {/* Score Card */}
@@ -315,12 +320,12 @@ export default function FitnessPage() {
             {/* Workout Recommendations */}
             <div className="mb-8">
               <div className="font-semibold text-xl text-foreground mb-4 flex items-center gap-2">
-                <Dumbbell className="w-6 h-6 text-primary" />
+                <Activity className="w-6 h-6 text-primary" />
                 Personalized Workout Plan
               </div>
               {isLoading ? (
                 <div className="flex items-center justify-center py-8">
-                  <Loader className="w-8 h-8 animate-spin text-primary" />
+                  <LoaderComponent className="w-8 h-8 animate-spin text-primary" />
                 </div>
               ) : (
                 <div className="space-y-6">
