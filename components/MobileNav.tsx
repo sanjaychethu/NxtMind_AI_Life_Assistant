@@ -2,13 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Home, Film, Heart, Brain } from 'lucide-react'
+import { MenuIcon, XMarkIcon, HomeIcon, FilmIcon, HeartIcon, BrainIcon } from '@heroicons/react/24/outline'
 
 const navItems = [
-  { href: '/', label: 'Home', icon: <Home className="w-5 h-5" /> },
-  { href: '/movies', label: 'Movies', icon: <Film className="w-5 h-5" /> },
-  { href: '/health', label: 'Health', icon: <Heart className="w-5 h-5" /> },
-  { href: '/nutrition', label: 'Nutrition', icon: <Brain className="w-5 h-5" /> }
+  { href: '/', label: 'Home', icon: <HomeIcon className="w-5 h-5" /> },
+  { href: '/movies', label: 'Movies', icon: <FilmIcon className="w-5 h-5" /> },
+  { href: '/health', label: 'Health', icon: <HeartIcon className="w-5 h-5" /> },
+  { href: '/nutrition', label: 'Nutrition', icon: <BrainIcon className="w-5 h-5" /> }
 ]
 
 export default function MobileNav() {
@@ -22,9 +22,9 @@ export default function MobileNav() {
         className="lg:hidden fixed top-4 right-4 z-50 p-2 rounded-lg bg-background/60 border border-foreground/10 hover:border-primary/30 transition-all duration-300"
       >
         {isOpen ? (
-          <X className="w-6 h-6" />
+          <XMarkIcon className="w-6 h-6" />
         ) : (
-          <Menu className="w-6 h-6" />
+          <MenuIcon className="w-6 h-6" />
         )}
       </button>
 
