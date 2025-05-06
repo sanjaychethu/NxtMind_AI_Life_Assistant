@@ -33,7 +33,12 @@ const movieCategories: Category[] = [
   {
     id: 'preferences',
     title: 'Movie Preferences',
-    icon: <FilmIcon className="w-6 h-6" />,
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="2" width="20" height="20" rx="2" />
+        <path d="M7 12h10M7 8h10M7 16h10" />
+      </svg>
+    ),
     questions: [
       {
         id: 'genre',
@@ -55,7 +60,12 @@ const movieCategories: Category[] = [
   {
     id: 'history',
     title: 'Viewing History',
-    icon: <ClockIcon className="w-6 h-6" />,
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    ),
     questions: [
       {
         id: 'recent',
@@ -181,7 +191,9 @@ export default function MoviesPage() {
               {loading ? (
                 <div className="text-center py-12">
                   <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center animate-spin">
-                    <SparklesIcon className="w-7 h-7 sm:w-8 sm:h-8 text-primary" />
+                    <svg className="w-7 h-7 sm:w-8 sm:h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg>
                   </div>
                   <h3 className="text-lg sm:text-xl font-semibold mb-2">Finding your perfect movies...</h3>
                   <p className="text-sm sm:text-base text-foreground/60">This may take a few moments</p>
