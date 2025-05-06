@@ -33,14 +33,14 @@ const modules = [
     id: '1',
     title: 'Health Assessment',
     description: 'Get personalized health insights and recommendations',
-    icon: '🏥',
+    icon: <HeartPulse className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
     path: '/health'
   },
   {
     id: '4',
     title: 'Nutrition Guide',
     description: 'Personalized meal plans and nutrition advice',
-    icon: '🥗',
+    icon: <Apple className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
     path: '/nutrition'
   },
   {
@@ -115,8 +115,8 @@ export default function Home() {
           {/* Animated Grid Pattern */}
           <div className="absolute inset-0 bg-grid-white/5" />
           {/* Floating Elements */}
-          <div className="absolute top-20 left-[5%] sm:left-[10%] w-48 sm:w-72 h-48 sm:h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-[5%] sm:right-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="hidden sm:block absolute top-20 left-[10%] w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+          <div className="hidden sm:block absolute bottom-20 right-[10%] w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
 
         <div className="container relative z-20 mx-auto">
@@ -173,9 +173,9 @@ export default function Home() {
             </div>
 
             {/* Hero Image/Illustration */}
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] animate-fade-in delay-500 mt-8 lg:mt-0">
+            <div className="relative h-[220px] xs:h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px] w-full max-w-[350px] xs:max-w-[400px] sm:max-w-[500px] md:max-w-[600px] mx-auto animate-fade-in delay-500 mt-8 lg:mt-0 flex items-center justify-center">
               <div className="relative z-10 h-full w-full rounded-2xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20" />
                 <Image
                   src="/images/ai.jpg"
                   alt="NexMind AI Assistant"
@@ -185,17 +185,16 @@ export default function Home() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-              {/* Decorative Elements */}
-              <div className="absolute -top-5 sm:-top-10 -right-5 sm:-right-10 w-20 sm:w-40 h-20 sm:h-40 bg-accent/20 rounded-full blur-2xl" />
-              <div className="absolute -bottom-5 sm:-bottom-10 -left-5 sm:-left-10 w-20 sm:w-40 h-20 sm:h-40 bg-primary/20 rounded-full blur-2xl" />
-              
-              {/* Stats */}
-              <div className="absolute -right-2 sm:-right-4 top-1/4 transform translate-x-1/2 bg-card/80 backdrop-blur-lg rounded-2xl p-2 sm:p-4 shadow-lg border border-foreground/10">
-                <div className="text-xl sm:text-2xl font-bold text-primary">50K+</div>
+              {/* Decorative Elements - hidden on mobile */}
+              <div className="hidden sm:block absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-2xl" />
+              <div className="hidden sm:block absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-2xl" />
+              {/* Stats - repositioned for mobile */}
+              <div className="absolute right-2 top-2 sm:-right-4 sm:top-1/4 transform sm:translate-x-1/2 bg-card/80 backdrop-blur-lg rounded-2xl p-2 sm:p-4 shadow-lg border border-foreground/10 z-30">
+                <div className="text-base sm:text-2xl font-bold text-primary">50K+</div>
                 <div className="text-xs sm:text-sm text-foreground/80">Active Users</div>
               </div>
-              <div className="absolute -left-2 sm:-left-4 bottom-1/4 transform -translate-x-1/2 bg-card/80 backdrop-blur-lg rounded-2xl p-2 sm:p-4 shadow-lg border border-foreground/10">
-                <div className="text-xl sm:text-2xl font-bold text-accent">98%</div>
+              <div className="absolute left-2 bottom-2 sm:-left-4 sm:bottom-1/4 transform sm:-translate-x-1/2 bg-card/80 backdrop-blur-lg rounded-2xl p-2 sm:p-4 shadow-lg border border-foreground/10 z-30">
+                <div className="text-base sm:text-2xl font-bold text-accent">98%</div>
                 <div className="text-xs sm:text-sm text-foreground/80">Satisfaction</div>
               </div>
             </div>
