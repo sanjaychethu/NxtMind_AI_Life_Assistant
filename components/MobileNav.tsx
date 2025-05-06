@@ -2,13 +2,46 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { MenuIcon, XMarkIcon, HomeIcon, FilmIcon, HeartIcon, BrainIcon } from '@heroicons/react/24/outline'
 
 const navItems = [
-  { href: '/', label: 'Home', icon: <HomeIcon className="w-5 h-5" /> },
-  { href: '/movies', label: 'Movies', icon: <FilmIcon className="w-5 h-5" /> },
-  { href: '/health', label: 'Health', icon: <HeartIcon className="w-5 h-5" /> },
-  { href: '/nutrition', label: 'Nutrition', icon: <BrainIcon className="w-5 h-5" /> }
+  { 
+    href: '/', 
+    label: 'Home', 
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    )
+  },
+  { 
+    href: '/movies', 
+    label: 'Movies', 
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="2" width="20" height="20" rx="2" />
+        <path d="M7 12h10M7 8h10M7 16h10" />
+      </svg>
+    )
+  },
+  { 
+    href: '/health', 
+    label: 'Health', 
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    )
+  },
+  { 
+    href: '/nutrition', 
+    label: 'Nutrition', 
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 2a9 9 0 019 9c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9z" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    )
+  }
 ]
 
 export default function MobileNav() {
@@ -22,9 +55,13 @@ export default function MobileNav() {
         className="lg:hidden fixed top-4 right-4 z-50 p-2 rounded-lg bg-background/60 border border-foreground/10 hover:border-primary/30 transition-all duration-300"
       >
         {isOpen ? (
-          <XMarkIcon className="w-6 h-6" />
+          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M6 18L18 6M6 6l12 12" />
+          </svg>
         ) : (
-          <MenuIcon className="w-6 h-6" />
+          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         )}
       </button>
 
