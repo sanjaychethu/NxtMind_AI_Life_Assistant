@@ -5,7 +5,6 @@ import Image from 'next/image'
 import MovieCard from '@/components/MovieCard'
 import MobileNav from '@/components/MobileNav'
 import { Star, HeartPulse, Brain } from 'lucide-react'
-import { FilmIcon, ClockIcon, SparklesIcon } from '@heroicons/react/24/solid'
 
 interface Question {
   id: string
