@@ -190,8 +190,8 @@ export default function Home() {
               <div className="hidden sm:block absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-2xl" />
               {/* Stats - repositioned for mobile */}
               <div className="absolute right-2 top-2 sm:-right-4 sm:top-1/4 transform sm:translate-x-1/2 bg-card/80 backdrop-blur-lg rounded-2xl p-2 sm:p-4 shadow-lg border border-foreground/10 z-30">
-                <div className="text-base sm:text-2xl font-bold text-primary">50K+</div>
-                <div className="text-xs sm:text-sm text-foreground/80">Active Users</div>
+                <div className="text-base sm:text-2xl font-bold text-primary">Trusted</div>
+                <div className="text-xs sm:text-sm text-foreground/80">by Users Worldwide</div>
               </div>
               <div className="absolute left-2 bottom-2 sm:-left-4 sm:bottom-1/4 transform sm:-translate-x-1/2 bg-card/80 backdrop-blur-lg rounded-2xl p-2 sm:p-4 shadow-lg border border-foreground/10 z-30">
                 <div className="text-base sm:text-2xl font-bold text-accent">98%</div>

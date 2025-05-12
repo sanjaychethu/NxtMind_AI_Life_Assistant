@@ -151,7 +151,6 @@ export default function MoviesPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Mobile Navigation */}
-      <MobileNav />
 
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-accent/5 to-background" />

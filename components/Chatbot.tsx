@@ -68,12 +68,12 @@ export default function Chatbot() {
     <>
       {/* Chat Button with Character */}
       <div 
-        className="fixed bottom-6 right-6 z-50"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Character Animation */}
-        <div className="relative w-24 h-24 mb-2">
+        {/* Character Animation - Hidden on mobile */}
+        <div className="hidden sm:block relative w-24 h-24 mb-2">
           <Lottie
             animationData={isHovered ? maxWave : maxIdle}
             loop={true}
@@ -84,20 +84,20 @@ export default function Chatbot() {
         {/* Chat Button */}
         <button
           onClick={() => setIsOpen(true)}
-          className="w-full bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 p-3 flex items-center justify-center gap-2"
+          className="bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 p-3 sm:p-4 flex items-center justify-center gap-2 sm:gap-3"
         >
-          <MessageSquare className="w-5 h-5" />
-          <span className="font-medium">Chat with Max</span>
+          <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
+          <span className="font-medium hidden sm:inline">Chat with Max</span>
         </button>
       </div>
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 h-[600px] bg-background/95 backdrop-blur-lg rounded-2xl shadow-2xl border border-foreground/10 flex flex-col z-50">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-96 sm:h-[600px] bg-background/95 backdrop-blur-lg rounded-none sm:rounded-2xl shadow-2xl border border-foreground/10 flex flex-col z-50">
           {/* Header with Character */}
           <div className="p-4 border-b border-foreground/10 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12">
+              <div className="w-10 h-10 sm:w-12 sm:h-12">
                 <Lottie
                   animationData={isLoading ? maxThinking : maxIdle}
                   loop={true}
@@ -105,15 +105,15 @@ export default function Chatbot() {
                 />
               </div>
               <div>
-                <h3 className="font-semibold">Chat with Max</h3>
+                <h3 className="font-semibold text-lg">Chat with Max</h3>
                 <p className="text-sm text-foreground/60">Your AI Assistant</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-foreground/10 rounded-lg transition-colors"
+              className="p-2 hover:bg-foreground/10 rounded-lg transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
@@ -125,20 +125,20 @@ export default function Chatbot() {
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl p-3 ${
+                  className={`max-w-[85%] sm:max-w-[80%] rounded-2xl p-3 ${
                     message.role === 'user'
                       ? 'bg-primary text-white'
                       : 'bg-foreground/10 text-foreground'
                   }`}
                 >
-                  {message.content}
+                  <p className="text-sm sm:text-base leading-relaxed">{message.content}</p>
                 </div>
               </div>
             ))}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-foreground/10 rounded-2xl p-3">
-                  <div className="flex gap-1">
+                  <div className="flex gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-primary animate-bounce" />
                     <div className="w-2 h-2 rounded-full bg-primary animate-bounce delay-100" />
                     <div className="w-2 h-2 rounded-full bg-primary animate-bounce delay-200" />
@@ -157,14 +157,14 @@ export default function Chatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 bg-foreground/5 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="flex-1 bg-foreground/5 rounded-xl px-4 py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="p-2 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+                className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
           </form>
